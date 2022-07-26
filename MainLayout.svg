@@ -1,0 +1,773 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1232' height='2270' viewBox='0 0 1232 2270' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','unhighlight'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#000000; font-family: Trebuchet MS, 'Trebuchet MS', Dialog; font-size:14.083333015441895px; }
+  a text:hover        { fill:#0d196f; text-shadow: 0px 0px 6px #d0ce00; font-size:13px; font-weight: bold;}
+  text.highlight      { fill:#0d196f; text-shadow: 0px 0px 4px #eac533; font-size:13px; font-weight: bold;}
+  text.white          { fill:#ffffff; }
+  text.colType        { fill:#b3b3b3; }
+  text.relName        { fill:#9c9a9a; }
+  text.legendTitle    { fill:#d65c68; font-weight:bold; }
+  text.legendSubTitle { fill:#717171; font-size:11px; }
+  path                { stroke:#928c7e; stroke-width:1.25; fill:none; }
+  path.virtual        { stroke:#a364b5; }
+  path.logo           { fill:#fbeac0;fill-opacity:1;stroke-width:0.3;stroke:#222222; }
+  path.dotted         { stroke-dasharray:4,2; }
+  path.unhighlight    { stroke-width:10; opacity:0; }
+  path.highlight      { stroke-width:3; stroke:#0054c5; opacity:0.8; }
+  path.line           { stroke-width:10; stroke-linecap:round; stroke-linejoin:round; }
+  rect.entity         { fill:#ffffff; stroke-width:1;shape-rendering:crispEdges;  }
+  line.delim          { stroke-width:1px; shape-rendering:crispEdges; }
+  line.topLine        { stroke-width:3px; shape-rendering:crispEdges; }
+  text.callout        { fill:#000000; font-family: Trebuchet MS, 'Trebuchet MS', Dialog; font-size:14.625px; }
+  rect.callout        { fill:url(#calloutGradient);  }
+  rect.shape          { stroke:#bebdbd; stroke-width:0.5; }
+  text.grp            { fill:#b1b1b1; }
+  rect.grp            { stroke:#a1a1a1; stroke-width:3; opacity:0.20; }
+  path.bgPattern      { fill:none;stroke-width:0.6;stroke:#e5e9ee; }
+  path.eval           { fill:#ececec;fill-opacity:1;stroke-width:0.6;stroke:#dddddd; }
+  rect.palpable       { fill:#fffbe5; }
+</style>
+<defs>
+  <pattern id="layoutBgA" width="60" height="34.64" patternUnits="userSpaceOnUse">
+    <rect x="0" y="0"  width="60" height="34.64" fill="#f4f4f6" />
+    <!--<path class='bgPattern' d='M 0 17.32 L 10 0 L 30 0 L 40 17.326 L 30 34.64 L 10 34.64 Z' />
+    <path class='bgPattern' d='M 40 17.32 L 60 17.32 Z' /> -->
+  </pattern>
+  <pattern id='layoutBgEval'  width='300' height='300' x='0' y='0' patternUnits="userSpaceOnUse">
+    <path class='eval' d='m 62.011835,91.267143 c 3.536475,3.175214 2.262669,8.705999 -1.637711,11.015197 -3.594697,5.8423 -6.34682,-2.892623 -9.715478,-4.653898 -5.609222,-2.838926 2.050802,-6.680123 4.77004,-8.319046 2.334696,-0.724067 4.935143,0.312302 6.583149,1.957747 z m -2.720492,2.538595 c -2.698397,-3.517732 -9.282815,1.269287 -3.69635,3.568637 2.765331,5.605665 7.052809,-0.56184 3.69635,-3.568637 z' />
+    <path class='eval' d='m 72.25864,84.624638 c 4.108046,3.143003 -0.737059,6.895259 -1.994918,8.323564 -3.586718,5.561143 -6.495079,-4.197379 -10.07759,-5.582178 -4.443422,-1.088878 1.349298,-7.249213 2.503526,-2.503449 2.464639,4.517161 2.304019,-3.70697 6.291113,-1.995914 1.280083,0.137865 2.410691,0.864819 3.277869,1.757977 z m -2.646109,2.323242 c -4.797162,-3.078383 -2.810517,6.305507 0.515161,1.990646 0.296432,-0.688582 0.01209,-1.493412 -0.515161,-1.990646 z' />
+    <path class='eval' d='m 78.230641,79.436735 c 4.142121,3.027466 -2.020102,10.435276 -3.450543,5.477315 3.306312,-5.248112 -9.186019,-2.220094 -5.805994,-8.77679 -0.544141,-3.93011 6.797826,-2.102227 3.386015,0.245477 -0.181085,2.915838 4.637371,1.019311 5.870522,3.053982 z' />
+    <path class='eval' d='m 82.744502,72.597397 c -4.901605,1.926521 1.146497,6.285555 2.559694,2.225783 6.21817,3.539297 -6.640186,8.416664 -7.590325,1.997457 -2.24365,-2.914883 4.026676,-10.148618 5.030631,-4.22324 z' />
+    <path class='eval' d='m 90.727458,64.259158 c 1.583987,1.690029 3.321317,3.2696 4.81267,5.026353 -2.535706,6.849794 -6.445583,-5.918773 -8.388458,-0.167017 0.782768,2.03426 5.877405,3.752079 2.670979,5.711199 -3.315119,1.519161 -5.782422,-5.157931 -8.858893,-6.780537 -4.229842,-1.139816 1.510134,-7.074128 2.586227,-2.385939 3.141198,5.495193 1.840537,-5.598295 7.177489,-1.404062 z' />
+    <path class='eval' d='m 99.622027,58.374253 c 1.493293,1.9548 -6.281936,7.024659 -0.885258,4.740447 0.386238,-4.434477 6.131941,-1.133173 2.175851,1.618005 -4.421491,6.12739 -13.666659,-3.151506 -7.058299,-7.136537 1.785129,-1.119329 4.348209,-0.743179 5.767706,0.778085 z m -2.900824,1.89746 c -3.608188,-2.208543 -2.280489,5.00803 -0.12563,0.329531 z' />
+    <path class='eval' d='m 115.18023,50.570441 c -1.61703,5.201678 -4.6204,-0.364502 -7.01598,-1.749619 -4.40977,2.122562 4.89641,4.913939 1.89606,7.018157 -2.48061,3.877635 -4.11404,-4.060614 -7.01192,-2.6391 -1.76318,3.107252 7.28394,6.252304 0.87346,7.876177 -1.74515,-2.956649 -9.055498,-5.610518 -3.950378,-8.66062 1.696478,1.897023 1.770418,-5.43503 5.347308,-3.072411 -0.44014,-5.474701 6.11995,-4.950882 7.7846,-0.815355 0.69076,0.682329 1.39587,1.351469 2.07685,2.042771 z' />
+    <path class='eval' d='m 120.54891,39.417125 c 2.50681,1.334124 4.80466,4.941837 0.75044,5.297362 -0.46414,1.89865 -5.25369,5.602652 -8.01742,1.815475 -3.87345,-2.809139 -0.0676,-7.603869 2.3036,-8.133924 1.6795,-3.853018 3.16703,-1.199465 4.96338,1.021087 z m -2.2464,2.175828 c -4.8049,-2.992167 -3.08987,6.380358 0.42374,2.036159 0.33052,-0.677508 0.12099,-1.525836 -0.42374,-2.036159 z' />
+    <path class='eval' d='m 128.50836,24.06821 c -5.10403,3.035506 3.20535,6.383175 5.05938,9.450276 -0.91853,2.95886 -4.06493,3.650723 -5.34691,0.265618 -2.25715,-2.089033 -4.65672,-6.948595 -7.07024,-2.584686 -4.71758,-3.764394 3.81217,-5.812054 5.12382,-9.226328 0.75738,0.677487 1.38637,1.498638 2.23389,2.095175 z' />
+    <path class='eval' d='m 137.14366,22.299812 c -3.09615,2.259885 0.71537,4.412454 1.99042,6.435866 -3.08975,5.080354 -5.91384,-2.98648 -8.92144,-4.094939 1.44369,-3.219573 3.3497,-1.335928 4.27156,-4.41058 0.97822,-0.894325 1.75044,1.871047 2.65946,2.069653 z' />
+    <path class='eval' d='m 136.85093,14.890174 c 2.31562,5.283511 -7.17975,1.771993 -1.29675,-0.475107 l 0.7108,0.08973 z m 4.867,5.317354 c 2.56912,1.439678 4.26517,4.725219 0.30678,5.233637 -1.56592,-3.098864 -9.51683,-5.749448 -3.64502,-8.633714 1.17746,0.325095 2.15375,2.591149 3.33824,3.400077 z' />
+    <path class='eval' d='m 149.95578,11.976423 c 2.50679,1.334142 4.80455,4.94192 0.75041,5.297394 -0.4641,1.898604 -5.25368,5.602645 -8.0174,1.81545 -3.87347,-2.80918 -0.0676,-7.603844 2.30366,-8.133968 1.67949,-3.8530525 3.16695,-1.1993573 4.96333,1.021124 z m -2.24641,2.175828 c -4.80489,-2.992177 -3.08986,6.380343 0.42374,2.036167 0.33055,-0.677518 0.121,-1.52585 -0.42374,-2.036167 z' />
+    <path class='eval' d='m 153.26135,7.538431 c 2.60497,1.5799548 6.03999,5.944272 1.08117,6.050232 -2.53319,-3.231828 -7.20316,-6.4304525 -8.84748,-9.4582682 1.89121,-2.8664883 3.78452,-2.247699 5.38514,0.8929426 0.78017,0.8503859 1.57195,1.6911437 2.38118,2.5150667 z' />
+  </pattern>
+  <!-- https://norbat.de/svg-pattern-3d-webmuster/ -->
+  <linearGradient id='groupUnderTitleLine' x1='0%' y1='0%' x2='100%' y2='0%' >
+    <stop offset='0%' stop-color='#a1a1a1' stop-opacity='0.5'/>
+    <stop offset='100%' stop-color='#a1a1a1' stop-opacity='0' />
+  </linearGradient>
+  <radialGradient id='calloutGradient' cx='25%' cy='20%' r='80%' fx='10%' fy='10%'>
+    <stop offset='0%' stop-color='#ffffff' />
+    <stop offset='100%' stop-color='#f8f6d1' />
+  </radialGradient>
+  <filter id="shadow" width="120%" height="120%">
+    <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#333" flood-opacity="0.4" />
+  </filter>
+  <!--
+  <filter id='shadow2' width='120%' height='120%'>
+    <feOffset result='offOut' in='SourceGraphic' dx='0' dy='0' />
+    <feColorMatrix result='matrixOut' in='offOut'
+                   values='0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0' />
+    <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='3' />
+    <feBlend in='SourceGraphic' in2='blurOut' />
+  </filter>
+  -->
+  <filter id='fkShadow' height='130%'>
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+      <feMergeNode/> <!-- this contains the offset blurred image -->
+      <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <radialGradient id='legendGradient' cx='5%' cy='5%' r='100%' >
+    <stop offset='0%' stop-color='#fdfeff' stop-opacity='1'/>
+    <stop offset='100%' stop-color='#e1eafa' stop-opacity='1' />
+  </radialGradient>
+  <symbol id='calloutArrowDown' >
+    <path d='M 0,0 L 8,12 L 16,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+    <path d='M 0,0 L 8,12 L 16,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' >
+    <path d='M 0,16 L 8,4 L 16,16 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+    <path d='M 0,16 L 8,4 L 16,16' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <path style='fill:#f0d938;stroke:#906b25;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;'
+            d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+      <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+            style='fill:#ffe5a5;fill-opacity:1;stroke:#906b25;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='idx1' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect width='4' height='4' x='7' y='1' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.83'/>
+      <rect width='4' height='4' x='1' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+      <rect width='4' height='4' x='7' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='idx2' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect width='4' height='3' x='6' y='1' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.83'/>
+      <rect width='7' height='3' x='3' y='6' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='unq' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect style='fill:none;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+            width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+            transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.8' y='7.4' style='font-size:7px;fill:#8a8a8a;'>U</text>
+    </g>
+  </symbol>
+  <symbol id='idx' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect style='fill:none;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+            width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+            transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' width="13" height="13">
+    <g transform='scale(0.87)'>
+      <path style='fill:#6a88cd;stroke:#5a72a8;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+    </g>
+  </symbol>
+  <symbol id='ref' width="13" height="13">
+    <g transform='scale(0.87)'>
+      <path style='fill:#f0d938;stroke:#906b25;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag0' width="13" height="13">
+    <g transform='scale(0.92)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag1' width="13" height="13">
+    <g transform='scale(0.92)'>
+      <path style='fill:#f4a393;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag2' width="13" height="13">
+    <g transform='scale(0.92)'>
+      <path style='fill:#77ec8b;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='nn' width="3" height="3">
+    <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <symbol id='virtual' width="13" height="13">
+    <circle cx='6' cy='6.5' r='5.5' fill='#a3dda3' stroke='#4c6a4c' stroke-width='0.5'/>
+    <path style='stroke:#ffffff;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 3,4 6,10 9,4'/>
+  </symbol>
+  <symbol id='view' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <line x1='12' y1='6' x2='19' y2='0' stroke='black' stroke-width='0.5' />
+      <line x1='0' y1='6' x2='7' y2='0' stroke='black' stroke-width='0.5' />
+      <circle cx='3' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+      <circle cx='10' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+    </g>
+  </symbol>
+
+</defs>
+
+<defs>  <marker id='src0u' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 1.60,4.00 L 3.20,4.00 L 4.80,4.00 L 6.40,4.00 z' />
+  </marker>
+  <marker id='src0' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 1.60,4.00 L 3.20,4.00 L 4.80,4.00 L 6.40,4.00 z' />
+    <path d='M 0.00,0.00 L 8.00,4.00 L 0.00,8.00' />
+  </marker>
+  <marker id='src1u' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+  </marker>
+  <marker id='src1' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <path d='M 0.00,0.00 L 8.00,4.00 L 0.00,8.00' />
+  </marker>
+  <marker id='dest0u' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+  </marker>
+  <marker id='dest0' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <path d='M 16.00,0.00 L 8.00,4.00 L 16.00,8.00' />
+  </marker>
+  <marker id='dest1u' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+  </marker>
+  <marker id='dest1' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <path d='M 16.00,0.00 L 8.00,4.00 L 16.00,8.00' />
+  </marker>
+  <marker id='arrow' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 8.000,4.000 L 16.000,4.000 L 8.000,0.000 L 16.000,4.000 L 8.000,8.000' />
+  </marker>
+  <marker id='line_arrow' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 8.000,4.000 L 16.000,4.000 L 8.000,0.000 L 16.000,4.000 L 8.000,8.000' />
+  </marker>
+  <marker id='line_straight' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+  </marker>
+  <linearGradient id='grp_ECECF7' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#C9C9FA' /> 
+     <stop offset='100%' stop-color='#C9C9FA00' /> 
+  </linearGradient>
+  <linearGradient id='grp_F7F2EC' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#FAE3C9' /> 
+     <stop offset='100%' stop-color='#FAE3C900' /> 
+  </linearGradient>
+  <linearGradient id='grp_ECF0F7' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#C9DAFA' /> 
+     <stop offset='100%' stop-color='#C9DAFA00' /> 
+  </linearGradient>
+  <linearGradient id='grp_F0ECF7' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#DAC9FA' /> 
+     <stop offset='100%' stop-color='#DAC9FA00' /> 
+  </linearGradient>
+  <linearGradient id='grp_EEF7EC' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#D1FAC9' /> 
+     <stop offset='100%' stop-color='#D1FAC900' /> 
+  </linearGradient>
+  <linearGradient id='tbg_BED3F4' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#F3F7FF' /> 
+     <stop offset='40%' stop-color='#DDEAFF' /> 
+     <stop offset='100%' stop-color='#C0D1EC' /> 
+  </linearGradient>
+  <linearGradient id='tbg_D1BEF4' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#F7F3FF' /> 
+     <stop offset='40%' stop-color='#E8DDFF' /> 
+     <stop offset='100%' stop-color='#CFC0EC' /> 
+  </linearGradient>
+  <linearGradient id='tbg_C7F4BE' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#F5FFF3' /> 
+     <stop offset='40%' stop-color='#E2FFDD' /> 
+     <stop offset='100%' stop-color='#C7ECC0' /> 
+  </linearGradient>
+  <linearGradient id='tbg_F4DDBE' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#FFF9F3' /> 
+     <stop offset='40%' stop-color='#FFF0DD' /> 
+     <stop offset='100%' stop-color='#ECD9C0' /> 
+  </linearGradient>
+  <linearGradient id='tbg_BEBEF4' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#F3F3FF' /> 
+     <stop offset='40%' stop-color='#DDDDFF' /> 
+     <stop offset='100%' stop-color='#C0C0EC' /> 
+  </linearGradient>
+</defs>
+
+<!-- == Shape Colors == -->
+<!-- == Desktop == -->
+<rect x='1' y='1' width='1230' height='2268' rx='8' ry='8' style='fill:url(#layoutBgA); stroke:#aaa; stroke-width:1px;' />
+<rect x='1' y='1' width='1230' height='2268' rx='8' ry='8' style='fill:url(#layoutBgEval);' />
+
+<!-- == Legend == -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='420' height='70' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
+  <text x='20' y='25' class='legendTitle' >MongoDb</text> 
+  <a xlink:href='https://dbschema.com'><text x='20' y='39' class='legendSubTitle'><tspan>@ DbSchema</tspan></text></a> 
+  <text x='20' y='53' class='legendSubTitle'><tspan>Read the schema comments as mouse-over tooltips.</tspan></text> 
+  <text x='20' y='67' class='legendSubTitle'><tspan>Zoom using CTRL + mouse wheel, pan by dragging with the right-mouse button.</tspan></text> 
+</g>
+
+<g transform='translate(0,110)'>
+<!-- == Group 'Collection 'publisherCampaignUsers'' == -->
+<rect class='grp' style='fill:url(#grp_ECECF7);stroke:#808081' x='32' y='1869' width='208' height='226' />
+<text x='44' y='1885' class='grp'>Collection 'publisherCampaignUsers'</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='44' y='1889' width='184' height='2' />
+
+<!-- == Group 'Collection 'publisherCampaign'' == -->
+<rect class='grp' style='fill:url(#grp_F7F2EC);stroke:#818080' x='784' y='1869' width='416' height='210' />
+<text x='796' y='1885' class='grp'>Collection 'publisherCampaign'</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='796' y='1889' width='392' height='2' />
+
+<!-- == Group 'Collection 'privateSmallcaseUserOffers'' == -->
+<rect class='grp' style='fill:url(#grp_ECF0F7);stroke:#808081' x='656' y='669' width='400' height='450' />
+<text x='668' y='685' class='grp'>Collection 'privateSmallcaseUserOffers'</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='668' y='689' width='376' height='2' />
+
+<!-- == Group 'Collection 'discount'' == -->
+<rect class='grp' style='fill:url(#grp_F0ECF7);stroke:#808081' x='784' y='157' width='336' height='418' />
+<text x='796' y='173' class='grp'>Collection 'discount'</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='796' y='177' width='312' height='2' />
+
+<!-- == Group 'Collection 'publisherOffersMeta'' == -->
+<rect class='grp' style='fill:url(#grp_EEF7EC);stroke:#808180' x='32' y='157' width='480' height='658' />
+<text x='44' y='173' class='grp'>Collection 'publisherOffersMeta'</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='44' y='177' width='456' height='2' />
+
+<!-- == Fk 'discount_JSon' == -->
+<path id='discount_JSon'  onmouseover="hghl(['discount_JSon','smallcase-staging.privateSmallcaseUserOffers.discount'])" onmouseout="uhghl(['discount_JSon','smallcase-staging.privateSmallcaseUserOffers.discount'])" transform='translate(8,0)' class='unhighlight' d='M 880,800L 864,800' >
+	<title>Fk JSon
+discount ref privateSmallcaseUserOffers (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 880,800L 864,800' ><title>Fk JSon
+discount ref privateSmallcaseUserOffers (  )</title></path>
+<text x='868' y='795' transform='rotate(0 868,795)' class='relName'>Obj</text>
+<!-- == Fk 'discount_JSon' == -->
+<path id='discount_JSon'  onmouseover="hghl(['discount_JSon','smallcase-staging.publisherOffers.discount'])" onmouseout="uhghl(['discount_JSon','smallcase-staging.publisherOffers.discount'])" transform='translate(8,0)' class='unhighlight' d='M 1008,176L 1008,168Q 1008,160 1000,160L 968,160Q 960,160 960,168L 960,176' >
+	<title>Fk JSon
+discount ref publisherOffers (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 1008,176L 1008,168Q 1008,160 1000,160L 968,160Q 960,160 960,168L 960,176' ><title>Fk JSon
+discount ref publisherOffers (  )</title></path>
+<text x='1011' y='174' transform='rotate(270 1011,174)' class='relName'>Obj</text>
+<!-- == Fk 'discount_JSon' == -->
+<path id='discount_JSon'  onmouseover="hghl(['discount_JSon','smallcase-staging.publisherOffersMeta.discount'])" onmouseout="uhghl(['discount_JSon','smallcase-staging.publisherOffersMeta.discount'])" transform='translate(8,0)' class='unhighlight' d='M 288,720L 280,720Q 272,720 272,712L 272,560' >
+	<title>Fk JSon
+discount ref publisherOffersMeta (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 288,720L 280,720Q 272,720 272,712L 272,560' ><title>Fk JSon
+discount ref publisherOffersMeta (  )</title></path>
+<text x='276' y='715' transform='rotate(0 276,715)' class='relName'>Obj</text>
+<!-- == Fk 'planData_JSon' == -->
+<path id='planData_JSon'  onmouseover="hghl(['planData_JSon','smallcase-staging.publisherOffersMeta.planData'])" onmouseout="uhghl(['planData_JSon','smallcase-staging.publisherOffersMeta.planData'])" transform='translate(8,0)' class='unhighlight' d='M 288,608L 264,608Q 256,608 256,600L 256,560' >
+	<title>Fk JSon
+planData ref publisherOffersMeta (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 288,608L 264,608Q 256,608 256,600L 256,560' ><title>Fk JSon
+planData ref publisherOffersMeta (  )</title></path>
+<text x='278' y='603' transform='rotate(0 278,603)' class='relName'>Ary</text>
+<!-- == Fk 'publisherCampaignUsers_Relationship' == -->
+<path id='publisherCampaignUsers_Relationship'  onmouseover="hghl(['publisherCampaignUsers_Relationship','smallcase-staging.publisherCampaignUsers.campaignId','smallcase-staging.publisherCampaign._id'])" onmouseout="uhghl(['publisherCampaignUsers_Relationship','smallcase-staging.publisherCampaignUsers.campaignId','smallcase-staging.publisherCampaign._id'])" transform='translate(8,0)' class='unhighlight' d='M 224,1920L 784,1920' >
+	<title>Fk Relationship
+publisherCampaignUsers ref publisherCampaign ( campaignId -&gt; _id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1)' marker-end='url(#dest1u)'  class='virtual'  d='M 224,1920L 784,1920' ><title>Fk Relationship
+publisherCampaignUsers ref publisherCampaign ( campaignId -&gt; _id )</title></path>
+<text x='234' y='1915' transform='rotate(0 234,1915)' class='relName'>Relationship</text>
+<!-- == Fk 'publisherOffers_Relationship' == -->
+<path id='publisherOffers_Relationship'  onmouseover="hghl(['publisherOffers_Relationship','smallcase-staging.publisherOffers.groupId','smallcase-staging.publisherOffersMeta._id'])" onmouseout="uhghl(['publisherOffers_Relationship','smallcase-staging.publisherOffers.groupId','smallcase-staging.publisherOffersMeta._id'])" transform='translate(8,0)' class='unhighlight' d='M 784,192L 424,192Q 416,192 416,184L 416,136Q 416,128 408,128L 248,128Q 240,128 240,136L 240,176' >
+	<title>Fk Relationship
+publisherOffers ref publisherOffersMeta ( groupId -&gt; _id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src0)' marker-end='url(#dest1u)'  class='dotted virtual'  d='M 784,192L 424,192Q 416,192 416,184L 416,136Q 416,128 408,128L 248,128Q 240,128 240,136L 240,176' ><title>Fk Relationship
+publisherOffers ref publisherOffersMeta ( groupId -&gt; _id )</title></path>
+<text x='717' y='187' transform='rotate(0 717,187)' class='relName'>Relationship</text>
+<!-- == Fk 'stats_JSon' == -->
+<path id='stats_JSon'  onmouseover="hghl(['stats_JSon','smallcase-staging.publisherCampaign.stats'])" onmouseout="uhghl(['stats_JSon','smallcase-staging.publisherCampaign.stats'])" transform='translate(8,0)' class='unhighlight' d='M 992,1920L 976,1920' >
+	<title>Fk JSon
+stats ref publisherCampaign (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 992,1920L 976,1920' ><title>Fk JSon
+stats ref publisherCampaign (  )</title></path>
+<text x='980' y='1915' transform='rotate(0 980,1915)' class='relName'>Obj</text>
+<!-- == Fk 'status_JSon' == -->
+<path id='status_JSon'  onmouseover="hghl(['status_JSon','smallcase-staging.publisherOffersMeta.status'])" onmouseout="uhghl(['status_JSon','smallcase-staging.publisherOffersMeta.status'])" transform='translate(8,0)' class='unhighlight' d='M 480,480L 504,480Q 512,480 512,472L 512,168Q 512,160 504,160L 280,160Q 272,160 272,168L 272,176' >
+	<title>Fk JSon
+status ref publisherOffersMeta (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 480,480L 504,480Q 512,480 512,472L 512,168Q 512,160 504,160L 280,160Q 272,160 272,168L 272,176' ><title>Fk JSon
+status ref publisherOffersMeta (  )</title></path>
+<text x='490' y='475' transform='rotate(0 490,475)' class='relName'>Obj</text>
+<!-- == Fk 'subscription_JSon' == -->
+<path id='subscription_JSon'  onmouseover="hghl(['subscription_JSon','smallcase-staging.privateSmallcaseUserOffers.subscription'])" onmouseout="uhghl(['subscription_JSon','smallcase-staging.privateSmallcaseUserOffers.subscription'])" transform='translate(8,0)' class='unhighlight' d='M 880,720L 864,720' >
+	<title>Fk JSon
+subscription ref privateSmallcaseUserOffers (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 880,720L 864,720' ><title>Fk JSon
+subscription ref privateSmallcaseUserOffers (  )</title></path>
+<text x='868' y='715' transform='rotate(0 868,715)' class='relName'>Obj</text>
+<!-- == Fk 'subscription_JSon' == -->
+<path id='subscription_JSon'  onmouseover="hghl(['subscription_JSon','smallcase-staging.publisherOffers.subscription'])" onmouseout="uhghl(['subscription_JSon','smallcase-staging.publisherOffers.subscription'])" transform='translate(8,0)' class='unhighlight' d='M 1008,352L 1008,360Q 1008,368 1000,368L 976,368' >
+	<title>Fk JSon
+subscription ref publisherOffers (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 1008,352L 1008,360Q 1008,368 1000,368L 976,368' ><title>Fk JSon
+subscription ref publisherOffers (  )</title></path>
+<text x='1021' y='354' transform='rotate(90 1021,354)' class='relName'>Obj</text>
+<!-- == Fk 'subscription_JSon' == -->
+<path id='subscription_JSon'  onmouseover="hghl(['subscription_JSon','smallcase-staging.publisherOffersMeta.subscription'])" onmouseout="uhghl(['subscription_JSon','smallcase-staging.publisherOffersMeta.subscription'])" transform='translate(8,0)' class='unhighlight' d='M 320,176L 320,152Q 320,144 312,144L 264,144Q 256,144 256,152L 256,176' >
+	<title>Fk JSon
+subscription ref publisherOffersMeta (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 320,176L 320,152Q 320,144 312,144L 264,144Q 256,144 256,152L 256,176' ><title>Fk JSon
+subscription ref publisherOffersMeta (  )</title></path>
+<text x='323' y='174' transform='rotate(270 323,174)' class='relName'>Obj</text>
+<!-- == Fk 'stats_JSon' == -->
+<path id='stats_JSon'  onmouseover="hghl(['stats_JSon','smallcase-staging.publisherOffersMeta.stats'])" onmouseout="uhghl(['stats_JSon','smallcase-staging.publisherOffersMeta.stats'])" transform='translate(8,0)' class='unhighlight' d='M 432,256L 432,120Q 432,112 424,112L 232,112Q 224,112 224,120L 224,176' >
+	<title>Fk JSon
+stats ref publisherOffersMeta (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#src1u)' marker-end='url(#arrow)'    d='M 432,256L 432,120Q 432,112 424,112L 232,112Q 224,112 224,120L 224,176' ><title>Fk JSon
+stats ref publisherOffersMeta (  )</title></path>
+<text x='435' y='254' transform='rotate(270 435,254)' class='relName'>Obj</text>
+<!-- == Table 'discount' == -->
+<rect id='depict_discount' class='entity' style='stroke:none;' x='896' y='792' width='112' height='80' rx='4' ry='4' />
+<path d='M 896 820 L 896 796 Q 896 792 900 792 L 1004 792 Q 1008 792 1008 796 L 1008 820 L896 820 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='896' y='792' width='112' height='80' rx='4' ry='4' style='fill:none;stroke:#B0B7C4'/>
+<a xlink:href='#discount'><text x='921' y='811' >discount</text><title>Sub-document discount
+type and number of discount</title></a>
+  <use id='nn' x='898' y='829' xlink:href='#nn'/><a xlink:href='#discount_type'><text id='discount.type' x='915' y='839'>type</text><title>type
+* string</title></a>
+<text x='992' y='840' text-anchor='end' style='fill:#8B95A6'>string</text>  <use id='nn' x='898' y='845' xlink:href='#nn'/><a xlink:href='#discount_value'><text id='discount.value' x='915' y='855'>value</text><title>value
+* int</title></a>
+<text x='992' y='856' text-anchor='end' style='fill:#8B95A6'>int</text>
+<!-- == Table 'discount' == -->
+<rect id='depict_discount' class='entity' style='stroke:none;' x='992' y='184' width='112' height='80' rx='4' ry='4' />
+<path d='M 992 212 L 992 188 Q 992 184 996 184 L 1100 184 Q 1104 184 1104 188 L 1104 212 L992 212 ' style='fill:url(#tbg_D1BEF4);stroke-width:0;' />
+<rect class='entity' x='992' y='184' width='112' height='80' rx='4' ry='4' style='fill:none;stroke:#B7B0C4'/>
+<a xlink:href='#discount'><text x='1017' y='203' >discount</text><title>Sub-document discount
+discount info like type of discount and number</title></a>
+  <use id='nn' x='994' y='221' xlink:href='#nn'/><a xlink:href='#discount_type'><text id='discount.type' x='1011' y='231'>type</text><title>type
+* string</title></a>
+<text x='1088' y='232' text-anchor='end' style='fill:#948BA6'>string</text>  <use id='nn' x='994' y='237' xlink:href='#nn'/><a xlink:href='#discount_value'><text id='discount.value' x='1011' y='247'>value</text><title>value
+* int</title></a>
+<text x='1088' y='248' text-anchor='end' style='fill:#948BA6'>int</text>
+<!-- == Table 'discount' == -->
+<rect id='depict_discount' class='entity' style='stroke:none;' x='304' y='712' width='112' height='80' rx='4' ry='4' />
+<path d='M 304 740 L 304 716 Q 304 712 308 712 L 412 712 Q 416 712 416 716 L 416 740 L304 740 ' style='fill:url(#tbg_C7F4BE);stroke-width:0;' />
+<rect class='entity' x='304' y='712' width='112' height='80' rx='4' ry='4' style='fill:none;stroke:#B3C4B0'/>
+<a xlink:href='#discount'><text x='329' y='731' >discount</text><title>Sub-document discount
+discount type with number</title></a>
+  <use id='nn' x='306' y='749' xlink:href='#nn'/><a xlink:href='#discount_type'><text id='discount.type' x='323' y='759'>type</text><title>type
+* string</title></a>
+<text x='400' y='760' text-anchor='end' style='fill:#8FA68B'>string</text>  <use id='nn' x='306' y='765' xlink:href='#nn'/><a xlink:href='#discount_value'><text id='discount.value' x='323' y='775'>value</text><title>value
+* int</title></a>
+<text x='400' y='776' text-anchor='end' style='fill:#8FA68B'>int</text>
+<!-- == Table 'planData' == -->
+<rect id='depict_planData' class='entity' style='stroke:none;' x='304' y='600' width='144' height='96' rx='4' ry='4' />
+<path d='M 304 628 L 304 604 Q 304 600 308 600 L 444 600 Q 448 600 448 604 L 448 628 L304 628 ' style='fill:url(#tbg_C7F4BE);stroke-width:0;' />
+<rect class='entity' x='304' y='600' width='144' height='96' rx='4' ry='4' style='fill:none;stroke:#B3C4B0'/>
+<a xlink:href='#planData'><text x='344' y='619' >planData</text><title>Sub-document planData
+Gives data like SCID, available plans eligible for the discount.</title></a>
+  <use id='nn' x='306' y='637' xlink:href='#nn'/><a xlink:href='#planData_name'><text id='planData.name' x='323' y='647'>name</text><title>name
+* string</title></a>
+<text x='432' y='648' text-anchor='end' style='fill:#8FA68B'>string</text>  <use id='nn' x='306' y='653' xlink:href='#nn'/><a xlink:href='#planData_durations'><text id='planData.durations' x='323' y='663'>durations</text><title>durations
+* array</title></a>
+<text x='432' y='664' text-anchor='end' style='fill:#8FA68B'>array</text>  <a xlink:href='#planData_scid'><text id='planData.scid' x='323' y='679'>scid</text><title>scid
+string</title></a>
+<text x='432' y='680' text-anchor='end' style='fill:#8FA68B'>string</text>
+<!-- == Table 'privateSmallcaseUserOffers' == -->
+<rect id='depict_smallcase-staging.privateSmallcaseUserOffers' class='entity' style='stroke:none;' x='672' y='696' width='192' height='400' rx='4' ry='4' />
+<path d='M 672 724 L 672 700 Q 672 696 676 696 L 860 696 Q 864 696 864 700 L 864 724 L672 724 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='672' y='696' width='192' height='400' rx='4' ry='4' style='fill:none;stroke:#B0B7C4'/>
+<a xlink:href='#smallcase-staging.privateSmallcaseUserOffers'><text x='677' y='715' >privateSmallcaseUserOffers</text><title>Collection smallcase-staging.privateSmallcaseUserOffers
+This collection used for the private offers which created across the smallcases specific to any users collection.
+
+(this collection gets no of document based on offer meta, if its based for one scid and available for 3 plans so total 3 documents will be created along with the email attached to each offer)
+ex:
+one scid have 2 plans eligible for 3 email so no of documents will be 3*2 = 6
+
+Also it will take data from publisherOffers at the time when any user availed the public offer so that time the document will be created wrt to the user trying to avail the offer.</title></a>
+  <use id='nn' x='674' y='733' xlink:href='#nn'/><use id='pk' x='674' y='732' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers__id'><text id='smallcase-staging.privateSmallcaseUserOffers._id' x='691' y='743'>_id</text><title>_id
+* objectid</title></a>
+<text x='848' y='744' text-anchor='end' style='fill:#8B95A6'>objectId</text>  <use id='nn' x='674' y='749' xlink:href='#nn'/><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_subscription'><text id='smallcase-staging.privateSmallcaseUserOffers.subscription' x='691' y='759' onmouseover="hghl(['subscription_JSon'])" onmouseout="uhghl(['subscription_JSon'])">subscription</text><title>subscription
+* object
+no of times it can be used at the time of renewal</title></a>
+<text x='848' y='760' text-anchor='end' style='fill:#8B95A6'>object</text>  <use id='nn' x='674' y='765' xlink:href='#nn'/><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_availCount'><text id='smallcase-staging.privateSmallcaseUserOffers.availCount' x='691' y='775'>availCount</text><title>availCount
+* int</title></a>
+<text x='848' y='776' text-anchor='end' style='fill:#8B95A6'>int</text>  <a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_offerAvailedCount'><text id='smallcase-staging.privateSmallcaseUserOffers.offerAvailedCount' x='691' y='791'>offerAvailedCount</text><title>offerAvailedCount
+int
+current stats of offer availed</title></a>
+<text x='848' y='792' text-anchor='end' style='fill:#8B95A6'>int</text>  <use id='nn' x='674' y='797' xlink:href='#nn'/><use id='unq' x='674' y='796' xlink:href='#unq'><title>Unq email_1 ( email ) Unq email_1_publisher_1_code_1_scid_1_duration_1 ( email, publisher, code, scid, duration ) </title></use><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_email'><text id='smallcase-staging.privateSmallcaseUserOffers.email' x='691' y='807'>email</text><title>email
+* string
+email for which offer is enabled</title></a>
+<text x='848' y='808' text-anchor='end' style='fill:#8B95A6'>string</text>  <use id='nn' x='674' y='813' xlink:href='#nn'/><use id='unq' x='674' y='812' xlink:href='#unq'><title>Unq email_1_publisher_1_code_1_scid_1_duration_1 ( email, publisher, code, scid, duration ) </title></use><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_publisher'><text id='smallcase-staging.privateSmallcaseUserOffers.publisher' x='691' y='823'>publisher</text><title>publisher
+* string
+manager/publisher offer curator.</title></a>
+<text x='848' y='824' text-anchor='end' style='fill:#8B95A6'>string</text>  <use id='nn' x='674' y='829' xlink:href='#nn'/><use id='unq' x='674' y='828' xlink:href='#unq'><title>Unq email_1_publisher_1_code_1_scid_1_duration_1 ( email, publisher, code, scid, duration ) </title></use><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_code'><text id='smallcase-staging.privateSmallcaseUserOffers.code' x='691' y='839'>code</text><title>code
+* string</title></a>
+<text x='848' y='840' text-anchor='end' style='fill:#8B95A6'>string</text>  <use id='nn' x='674' y='845' xlink:href='#nn'/><use id='unq' x='674' y='844' xlink:href='#unq'><title>Unq email_1_publisher_1_code_1_scid_1_duration_1 ( email, publisher, code, scid, duration ) </title></use><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_scid'><text id='smallcase-staging.privateSmallcaseUserOffers.scid' x='691' y='855'>scid</text><title>scid
+* string</title></a>
+<text x='848' y='856' text-anchor='end' style='fill:#8B95A6'>string</text>  <use id='nn' x='674' y='861' xlink:href='#nn'/><use id='unq' x='674' y='860' xlink:href='#unq'><title>Unq email_1_publisher_1_code_1_scid_1_duration_1 ( email, publisher, code, scid, duration ) </title></use><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_duration'><text id='smallcase-staging.privateSmallcaseUserOffers.duration' x='691' y='871'>duration</text><title>duration
+* string
+duration for which this offer is linked to user</title></a>
+<text x='848' y='872' text-anchor='end' style='fill:#8B95A6'>string</text>  <use id='nn' x='674' y='877' xlink:href='#nn'/><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_discount'><text id='smallcase-staging.privateSmallcaseUserOffers.discount' x='691' y='887' onmouseover="hghl(['discount_JSon'])" onmouseout="uhghl(['discount_JSon'])">discount</text><title>discount
+* object
+type and number of discount</title></a>
+<text x='848' y='888' text-anchor='end' style='fill:#8B95A6'>object</text>  <use id='nn' x='674' y='893' xlink:href='#nn'/><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_startDate'><text id='smallcase-staging.privateSmallcaseUserOffers.startDate' x='691' y='903'>startDate</text><title>startDate
+* date</title></a>
+<text x='848' y='904' text-anchor='end' style='fill:#8B95A6'>date</text>  <use id='nn' x='674' y='909' xlink:href='#nn'/><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_endDate'><text id='smallcase-staging.privateSmallcaseUserOffers.endDate' x='691' y='919'>endDate</text><title>endDate
+* date</title></a>
+<text x='848' y='920' text-anchor='end' style='fill:#8B95A6'>date</text>  <a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_scidOffer'><text id='smallcase-staging.privateSmallcaseUserOffers.scidOffer' x='691' y='935'>scidOffer</text><title>scidOffer
+boolean
+if this is scid offer</title></a>
+<text x='848' y='936' text-anchor='end' style='fill:#8B95A6'>Boolean</text>  <use id='nn' x='674' y='941' xlink:href='#nn'/><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_history'><text id='smallcase-staging.privateSmallcaseUserOffers.history' x='691' y='951'>history</text><title>history
+* array[object]</title></a>
+<text x='848' y='952' text-anchor='end' style='fill:#8B95A6'>array[object]</text>  <a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_createdAt'><text id='smallcase-staging.privateSmallcaseUserOffers.createdAt' x='691' y='967'>createdAt</text><title>createdAt
+date</title></a>
+<text x='848' y='968' text-anchor='end' style='fill:#8B95A6'>date</text>  <a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_updatedAt'><text id='smallcase-staging.privateSmallcaseUserOffers.updatedAt' x='691' y='983'>updatedAt</text><title>updatedAt
+date</title></a>
+<text x='848' y='984' text-anchor='end' style='fill:#8B95A6'>date</text>  <use id='nn' x='674' y='989' xlink:href='#nn'/><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers___v'><text id='smallcase-staging.privateSmallcaseUserOffers.__v' x='691' y='999'>__v</text><title>__v
+* int</title></a>
+<text x='848' y='1000' text-anchor='end' style='fill:#8B95A6'>int</text>  <a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_userId'><text id='smallcase-staging.privateSmallcaseUserOffers.userId' x='691' y='1015'>userId</text><title>userId
+objectid
+user Id for which this user is offer available</title></a>
+<text x='848' y='1016' text-anchor='end' style='fill:#8B95A6'>objectId</text>  <a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_userPlanId'><text id='smallcase-staging.privateSmallcaseUserOffers.userPlanId' x='691' y='1031'>userPlanId</text><title>userPlanId
+objectid</title></a>
+<text x='848' y='1032' text-anchor='end' style='fill:#8B95A6'>objectId</text>  <a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_active'><text id='smallcase-staging.privateSmallcaseUserOffers.active' x='691' y='1047'>active</text><title>active
+boolean
+if this is active</title></a>
+<text x='848' y='1048' text-anchor='end' style='fill:#8B95A6'>Boolean</text>  <a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_status'><text id='smallcase-staging.privateSmallcaseUserOffers.status' x='691' y='1063'>status</text><title>status
+string
+status of the current offer if its expired/availed</title></a>
+<text x='848' y='1064' text-anchor='end' style='fill:#8B95A6'>string</text>  <use id='unq' x='674' y='1068' xlink:href='#unq'><title>Unq offerId_1 ( offerId ) </title></use><a xlink:href='#smallcase-staging.privateSmallcaseUserOffers_offerId'><text id='smallcase-staging.privateSmallcaseUserOffers.offerId' x='691' y='1079'>offerId</text><title>offerId
+objectid
+group Id from meta collection to map it with the current Offer</title></a>
+<text x='848' y='1080' text-anchor='end' style='fill:#8B95A6'>objectId</text>
+<!-- == Table 'publisherCampaign' == -->
+<rect id='depict_smallcase-staging.publisherCampaign' class='entity' style='stroke:none;' x='800' y='1896' width='176' height='160' rx='4' ry='4' />
+<path d='M 800 1924 L 800 1900 Q 800 1896 804 1896 L 972 1896 Q 976 1896 976 1900 L 976 1924 L800 1924 ' style='fill:url(#tbg_F4DDBE);stroke-width:0;' />
+<rect class='entity' x='800' y='1896' width='176' height='160' rx='4' ry='4' style='fill:none;stroke:#C4BBB0'/>
+<a xlink:href='#smallcase-staging.publisherCampaign'><text x='824' y='1915' >publisherCampaign</text><title>Collection smallcase-staging.publisherCampaign</title></a>
+  <use id='nn' x='802' y='1933' xlink:href='#nn'/><use id='pk' x='802' y='1932' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#smallcase-staging.publisherCampaign__id'><text id='smallcase-staging.publisherCampaign._id' x='819' y='1943' onmouseover="hghl(['publisherCampaignUsers_Relationship','smallcase-staging.publisherCampaignUsers.campaignId'])" onmouseout="uhghl(['publisherCampaignUsers_Relationship','smallcase-staging.publisherCampaignUsers.campaignId'])">_id</text><title>_id
+* objectid</title></a>
+<text x='960' y='1944' text-anchor='end' style='fill:#A69A8B'>objectId</text><a xlink:href='#smallcase-staging.publisherCampaign._id'><use id='ref' x='964' y='1932' xlink:href='#ref'/><title>Referred by publisherCampaignUsers ( campaignId -&gt; _id ) </title></a>
+  <use id='nn' x='802' y='1949' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherCampaign_stats'><text id='smallcase-staging.publisherCampaign.stats' x='819' y='1959' onmouseover="hghl(['stats_JSon'])" onmouseout="uhghl(['stats_JSon'])">stats</text><title>stats
+* object</title></a>
+<text x='960' y='1960' text-anchor='end' style='fill:#A69A8B'>object</text>  <use id='nn' x='802' y='1965' xlink:href='#nn'/><use id='unq' x='802' y='1964' xlink:href='#unq'><title>Unq publisher_1 ( publisher ) </title></use><a xlink:href='#smallcase-staging.publisherCampaign_publisher'><text id='smallcase-staging.publisherCampaign.publisher' x='819' y='1975'>publisher</text><title>publisher
+* string</title></a>
+<text x='960' y='1976' text-anchor='end' style='fill:#A69A8B'>string</text>  <use id='nn' x='802' y='1981' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherCampaign_scid'><text id='smallcase-staging.publisherCampaign.scid' x='819' y='1991'>scid</text><title>scid
+* string</title></a>
+<text x='960' y='1992' text-anchor='end' style='fill:#A69A8B'>string</text>  <use id='nn' x='802' y='1997' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherCampaign_date'><text id='smallcase-staging.publisherCampaign.date' x='819' y='2007'>date</text><title>date
+* date</title></a>
+<text x='960' y='2008' text-anchor='end' style='fill:#A69A8B'>date</text>  <use id='nn' x='802' y='2013' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherCampaign___v'><text id='smallcase-staging.publisherCampaign.__v' x='819' y='2023'>__v</text><title>__v
+* int</title></a>
+<text x='960' y='2024' text-anchor='end' style='fill:#A69A8B'>int</text>  <a xlink:href='#smallcase-staging.publisherCampaign_smallcaseName'><text id='smallcase-staging.publisherCampaign.smallcaseName' x='819' y='2039'>smallcaseName</text><title>smallcaseName
+string</title></a>
+<text x='960' y='2040' text-anchor='end' style='fill:#A69A8B'>string</text>
+<!-- == Table 'publisherCampaignUsers' == -->
+<rect id='depict_smallcase-staging.publisherCampaignUsers' class='entity' style='stroke:none;' x='48' y='1896' width='176' height='176' rx='4' ry='4' />
+<path d='M 48 1924 L 48 1900 Q 48 1896 52 1896 L 220 1896 Q 224 1896 224 1900 L 224 1924 L48 1924 ' style='fill:url(#tbg_BEBEF4);stroke-width:0;' />
+<rect class='entity' x='48' y='1896' width='176' height='176' rx='4' ry='4' style='fill:none;stroke:#B0B0C4'/>
+<a xlink:href='#smallcase-staging.publisherCampaignUsers'><text x='55' y='1915' >publisherCampaignUsers</text><title>Collection smallcase-staging.publisherCampaignUsers</title></a>
+  <use id='nn' x='50' y='1933' xlink:href='#nn'/><use id='pk' x='50' y='1932' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#smallcase-staging.publisherCampaignUsers__id'><text id='smallcase-staging.publisherCampaignUsers._id' x='67' y='1943'>_id</text><title>_id
+* objectid</title></a>
+<text x='208' y='1944' text-anchor='end' style='fill:#8B8BA6'>objectId</text>  <use id='nn' x='50' y='1949' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherCampaignUsers_publisher'><text id='smallcase-staging.publisherCampaignUsers.publisher' x='67' y='1959'>publisher</text><title>publisher
+* string</title></a>
+<text x='208' y='1960' text-anchor='end' style='fill:#8B8BA6'>string</text>  <use id='nn' x='50' y='1965' xlink:href='#nn'/><use id='unq' x='50' y='1964' xlink:href='#unq'><title>Unq email_1 ( email ) </title></use><a xlink:href='#smallcase-staging.publisherCampaignUsers_email'><text id='smallcase-staging.publisherCampaignUsers.email' x='67' y='1975'>email</text><title>email
+* string</title></a>
+<text x='208' y='1976' text-anchor='end' style='fill:#8B8BA6'>string</text>  <a xlink:href='#smallcase-staging.publisherCampaignUsers_phoneNumber'><text id='smallcase-staging.publisherCampaignUsers.phoneNumber' x='67' y='1991'>phoneNumber</text><title>phoneNumber
+string</title></a>
+<text x='208' y='1992' text-anchor='end' style='fill:#8B8BA6'>string</text>  <use id='nn' x='50' y='1997' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherCampaignUsers_campaignId'><text id='smallcase-staging.publisherCampaignUsers.campaignId' x='67' y='2007' onmouseover="hghl(['publisherCampaignUsers_Relationship','smallcase-staging.publisherCampaign._id'])" onmouseout="uhghl(['publisherCampaignUsers_Relationship','smallcase-staging.publisherCampaign._id'])">campaignId</text><title>campaignId
+* objectid</title></a>
+<text x='208' y='2008' text-anchor='end' style='fill:#8B8BA6'>objectId</text><a xlink:href='#smallcase-staging.publisherCampaignUsers.campaignId'><use id='fk' x='212' y='1996' xlink:href='#fk'/><title>References publisherCampaign ( campaignId -&gt; _id ) </title></a>
+  <use id='nn' x='50' y='2013' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherCampaignUsers_scid'><text id='smallcase-staging.publisherCampaignUsers.scid' x='67' y='2023'>scid</text><title>scid
+* string</title></a>
+<text x='208' y='2024' text-anchor='end' style='fill:#8B8BA6'>string</text>  <use id='nn' x='50' y='2029' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherCampaignUsers___v'><text id='smallcase-staging.publisherCampaignUsers.__v' x='67' y='2039'>__v</text><title>__v
+* int</title></a>
+<text x='208' y='2040' text-anchor='end' style='fill:#8B8BA6'>int</text>  <a xlink:href='#smallcase-staging.publisherCampaignUsers_name'><text id='smallcase-staging.publisherCampaignUsers.name' x='67' y='2055'>name</text><title>name
+string</title></a>
+<text x='208' y='2056' text-anchor='end' style='fill:#8B8BA6'>string</text>
+<!-- == Table 'publisherOffers' == -->
+<rect id='depict_smallcase-staging.publisherOffers' class='entity' style='stroke:none;' x='800' y='184' width='176' height='368' rx='4' ry='4' />
+<path d='M 800 212 L 800 188 Q 800 184 804 184 L 972 184 Q 976 184 976 188 L 976 212 L800 212 ' style='fill:url(#tbg_D1BEF4);stroke-width:0;' />
+<rect class='entity' x='800' y='184' width='176' height='368' rx='4' ry='4' style='fill:none;stroke:#B7B0C4'/>
+<a xlink:href='#smallcase-staging.publisherOffers'><text x='836' y='203' >publisherOffers</text><title>Collection smallcase-staging.publisherOffers
+This collection used for the public offers which created across the smallcases not specific to any users.
+
+(this collection gets no of document based on offer meta, if its based for one scid and available for 3 plans so total 3 documents will be created)</title></a>
+  <use id='nn' x='802' y='221' xlink:href='#nn'/><use id='pk' x='802' y='220' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#smallcase-staging.publisherOffers__id'><text id='smallcase-staging.publisherOffers._id' x='819' y='231'>_id</text><title>_id
+* objectid</title></a>
+<text x='960' y='232' text-anchor='end' style='fill:#948BA6'>objectId</text>  <use id='nn' x='802' y='237' xlink:href='#nn'/><use id='unq' x='802' y='236' xlink:href='#unq'><title>Unq publisher_1_code_1_scid_1_duration_1 ( publisher, code, scid, duration ) </title></use><a xlink:href='#smallcase-staging.publisherOffers_publisher'><text id='smallcase-staging.publisherOffers.publisher' x='819' y='247'>publisher</text><title>publisher
+* string
+publisher name</title></a>
+<text x='960' y='248' text-anchor='end' style='fill:#948BA6'>string</text>  <a xlink:href='#smallcase-staging.publisherOffers_planId'><text id='smallcase-staging.publisherOffers.planId' x='819' y='263'>planId</text><title>planId
+string
+planId of the specific plan for this offer is created.</title></a>
+<text x='960' y='264' text-anchor='end' style='fill:#948BA6'>string</text>  <a xlink:href='#smallcase-staging.publisherOffers_version'><text id='smallcase-staging.publisherOffers.version' x='819' y='279'>version</text><title>version
+int</title></a>
+<text x='960' y='280' text-anchor='end' style='fill:#948BA6'>int</text>  <use id='nn' x='802' y='285' xlink:href='#nn'/><use id='unq' x='802' y='284' xlink:href='#unq'><title>Unq publisher_1_code_1_scid_1_duration_1 ( publisher, code, scid, duration ) </title></use><a xlink:href='#smallcase-staging.publisherOffers_duration'><text id='smallcase-staging.publisherOffers.duration' x='819' y='295'>duration</text><title>duration
+* string</title></a>
+<text x='960' y='296' text-anchor='end' style='fill:#948BA6'>string</text>  <use id='nn' x='802' y='301' xlink:href='#nn'/><use id='unq' x='802' y='300' xlink:href='#unq'><title>Unq publisher_1_code_1_scid_1_duration_1 ( publisher, code, scid, duration ) </title></use><a xlink:href='#smallcase-staging.publisherOffers_code'><text id='smallcase-staging.publisherOffers.code' x='819' y='311'>code</text><title>code
+* string</title></a>
+<text x='960' y='312' text-anchor='end' style='fill:#948BA6'>string</text>  <use id='unq' x='802' y='316' xlink:href='#unq'><title>Unq publisher_1_code_1_scid_1_duration_1 ( publisher, code, scid, duration ) </title></use><a xlink:href='#smallcase-staging.publisherOffers_scid'><text id='smallcase-staging.publisherOffers.scid' x='819' y='327'>scid</text><title>scid
+string
+id of the smallcase.</title></a>
+<text x='960' y='328' text-anchor='end' style='fill:#948BA6'>string</text>  <use id='nn' x='802' y='333' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffers_discount'><text id='smallcase-staging.publisherOffers.discount' x='819' y='343' onmouseover="hghl(['discount_JSon'])" onmouseout="uhghl(['discount_JSon'])">discount</text><title>discount
+* object
+discount info like type of discount and number</title></a>
+<text x='960' y='344' text-anchor='end' style='fill:#948BA6'>object</text>  <use id='nn' x='802' y='349' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffers_subscription'><text id='smallcase-staging.publisherOffers.subscription' x='819' y='359' onmouseover="hghl(['subscription_JSon'])" onmouseout="uhghl(['subscription_JSon'])">subscription</text><title>subscription
+* object
+no of times this offer code can be used in the renewal cycle.</title></a>
+<text x='960' y='360' text-anchor='end' style='fill:#948BA6'>object</text>  <use id='nn' x='802' y='365' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffers_availCount'><text id='smallcase-staging.publisherOffers.availCount' x='819' y='375'>availCount</text><title>availCount
+* int
+no of times it can be availed in the fresh subscription.</title></a>
+<text x='960' y='376' text-anchor='end' style='fill:#948BA6'>int</text>  <use id='nn' x='802' y='381' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffers_startDate'><text id='smallcase-staging.publisherOffers.startDate' x='819' y='391'>startDate</text><title>startDate
+* date</title></a>
+<text x='960' y='392' text-anchor='end' style='fill:#948BA6'>date</text>  <use id='nn' x='802' y='397' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffers_endDate'><text id='smallcase-staging.publisherOffers.endDate' x='819' y='407'>endDate</text><title>endDate
+* date</title></a>
+<text x='960' y='408' text-anchor='end' style='fill:#948BA6'>date</text>  <use id='nn' x='802' y='413' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffers_active'><text id='smallcase-staging.publisherOffers.active' x='819' y='423'>active</text><title>active
+* boolean
+if the offer is active or not.</title></a>
+<text x='960' y='424' text-anchor='end' style='fill:#948BA6'>Boolean</text>  <use id='nn' x='802' y='429' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffers___v'><text id='smallcase-staging.publisherOffers.__v' x='819' y='439'>__v</text><title>__v
+* int</title></a>
+<text x='960' y='440' text-anchor='end' style='fill:#948BA6'>int</text>  <a xlink:href='#smallcase-staging.publisherOffers_global'><text id='smallcase-staging.publisherOffers.global' x='819' y='455'>global</text><title>global
+boolean</title></a>
+<text x='960' y='456' text-anchor='end' style='fill:#948BA6'>Boolean</text>  <a xlink:href='#smallcase-staging.publisherOffers_createdAt'><text id='smallcase-staging.publisherOffers.createdAt' x='819' y='471'>createdAt</text><title>createdAt
+date</title></a>
+<text x='960' y='472' text-anchor='end' style='fill:#948BA6'>date</text>  <a xlink:href='#smallcase-staging.publisherOffers_updatedAt'><text id='smallcase-staging.publisherOffers.updatedAt' x='819' y='487'>updatedAt</text><title>updatedAt
+date</title></a>
+<text x='960' y='488' text-anchor='end' style='fill:#948BA6'>date</text>  <a xlink:href='#smallcase-staging.publisherOffers_scidOffer'><text id='smallcase-staging.publisherOffers.scidOffer' x='819' y='503'>scidOffer</text><title>scidOffer
+boolean
+if this is scid based offer</title></a>
+<text x='960' y='504' text-anchor='end' style='fill:#948BA6'>Boolean</text>  <a xlink:href='#smallcase-staging.publisherOffers_groupId'><text id='smallcase-staging.publisherOffers.groupId' x='819' y='519' onmouseover="hghl(['publisherOffers_Relationship','smallcase-staging.publisherOffersMeta._id'])" onmouseout="uhghl(['publisherOffers_Relationship','smallcase-staging.publisherOffersMeta._id'])">groupId</text><title>groupId
+objectid
+id from the offerMeta collection to identify the offer</title></a>
+<text x='960' y='520' text-anchor='end' style='fill:#948BA6'>objectId</text><a xlink:href='#smallcase-staging.publisherOffers.groupId'><use id='fk' x='964' y='508' xlink:href='#fk'/><title>References publisherOffersMeta ( groupId -&gt; _id ) </title></a>
+  <a xlink:href='#smallcase-staging.publisherOffers_history'><text id='smallcase-staging.publisherOffers.history' x='819' y='535'>history</text><title>history
+array[object]</title></a>
+<text x='960' y='536' text-anchor='end' style='fill:#948BA6'>array[object]</text>
+<!-- == Table 'publisherOffersMeta' == -->
+<rect id='depict_smallcase-staging.publisherOffersMeta' class='entity' style='stroke:none;' x='48' y='184' width='240' height='368' rx='4' ry='4' />
+<path d='M 48 212 L 48 188 Q 48 184 52 184 L 284 184 Q 288 184 288 188 L 288 212 L48 212 ' style='fill:url(#tbg_C7F4BE);stroke-width:0;' />
+<rect class='entity' x='48' y='184' width='240' height='368' rx='4' ry='4' style='fill:none;stroke:#B3C4B0'/>
+<a xlink:href='#smallcase-staging.publisherOffersMeta'><text x='100' y='203' >publisherOffersMeta</text><title>Collection smallcase-staging.publisherOffersMeta
+This collection used for the offer level info, this is first collection gives info for the offer created in the database.</title></a>
+  <use id='nn' x='50' y='221' xlink:href='#nn'/><use id='pk' x='50' y='220' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#smallcase-staging.publisherOffersMeta__id'><text id='smallcase-staging.publisherOffersMeta._id' x='67' y='231' onmouseover="hghl(['publisherOffers_Relationship','smallcase-staging.publisherOffers.groupId'])" onmouseout="uhghl(['publisherOffers_Relationship','smallcase-staging.publisherOffers.groupId'])">_id</text><title>_id
+* objectid</title></a>
+<text x='272' y='232' text-anchor='end' style='fill:#8FA68B'>objectId</text><a xlink:href='#smallcase-staging.publisherOffersMeta._id'><use id='ref' x='276' y='220' xlink:href='#ref'/><title>Referred by publisherOffers ( groupId -&gt; _id ) </title></a>
+  <use id='nn' x='50' y='237' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_subscription'><text id='smallcase-staging.publisherOffersMeta.subscription' x='67' y='247' onmouseover="hghl(['subscription_JSon'])" onmouseout="uhghl(['subscription_JSon'])">subscription</text><title>subscription
+* object
+used in the renewal time and count no of times</title></a>
+<text x='272' y='248' text-anchor='end' style='fill:#8FA68B'>object</text>  <use id='nn' x='50' y='253' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_stats'><text id='smallcase-staging.publisherOffersMeta.stats' x='67' y='263' onmouseover="hghl(['stats_JSon','stats_JSon'])" onmouseout="uhghl(['stats_JSon','stats_JSon'])">stats</text><title>stats
+* object
+gives stats like how many user have availed and eligible, revenue, available email/offers</title></a>
+<text x='272' y='264' text-anchor='end' style='fill:#8FA68B'>object</text>  <use id='nn' x='50' y='269' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_status'><text id='smallcase-staging.publisherOffersMeta.status' x='67' y='279' onmouseover="hghl(['status_JSon'])" onmouseout="uhghl(['status_JSon'])">status</text><title>status
+* object</title></a>
+<text x='272' y='280' text-anchor='end' style='fill:#8FA68B'>object</text>  <use id='nn' x='50' y='285' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_availCount'><text id='smallcase-staging.publisherOffersMeta.availCount' x='67' y='295'>availCount</text><title>availCount
+* int
+No of times user can avail the offer in the subscribe state (no renewal)</title></a>
+<text x='272' y='296' text-anchor='end' style='fill:#8FA68B'>int</text>  <use id='nn' x='50' y='301' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_eligibleUserEmails'><text id='smallcase-staging.publisherOffersMeta.eligibleUserEmails' x='67' y='311'>eligibleUserEmails</text><title>eligibleUserEmails
+* array[object]</title></a>
+<text x='272' y='312' text-anchor='end' style='fill:#8FA68B'>array[object]</text>  <use id='nn' x='50' y='317' xlink:href='#nn'/><use id='unq' x='50' y='316' xlink:href='#unq'><title>Unq publisher_1_code_1 ( publisher, code ) </title></use><a xlink:href='#smallcase-staging.publisherOffersMeta_publisher'><text id='smallcase-staging.publisherOffersMeta.publisher' x='67' y='327'>publisher</text><title>publisher
+* string</title></a>
+<text x='272' y='328' text-anchor='end' style='fill:#8FA68B'>string</text>  <use id='nn' x='50' y='333' xlink:href='#nn'/><use id='unq' x='50' y='332' xlink:href='#unq'><title>Unq publisher_1_code_1 ( publisher, code ) </title></use><a xlink:href='#smallcase-staging.publisherOffersMeta_code'><text id='smallcase-staging.publisherOffersMeta.code' x='67' y='343'>code</text><title>code
+* string</title></a>
+<text x='272' y='344' text-anchor='end' style='fill:#8FA68B'>string</text>  <use id='nn' x='50' y='349' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_planData'><text id='smallcase-staging.publisherOffersMeta.planData' x='67' y='359' onmouseover="hghl(['planData_JSon'])" onmouseout="uhghl(['planData_JSon'])">planData</text><title>planData
+* array[object]
+Gives data like SCID, available plans eligible for the discount.</title></a>
+<text x='272' y='360' text-anchor='end' style='fill:#8FA68B'>array[object]</text>  <use id='nn' x='50' y='365' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_discount'><text id='smallcase-staging.publisherOffersMeta.discount' x='67' y='375' onmouseover="hghl(['discount_JSon'])" onmouseout="uhghl(['discount_JSon'])">discount</text><title>discount
+* object
+discount type with number</title></a>
+<text x='272' y='376' text-anchor='end' style='fill:#8FA68B'>object</text>  <use id='nn' x='50' y='381' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_startDate'><text id='smallcase-staging.publisherOffersMeta.startDate' x='67' y='391'>startDate</text><title>startDate
+* date</title></a>
+<text x='272' y='392' text-anchor='end' style='fill:#8FA68B'>date</text>  <use id='nn' x='50' y='397' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_endDate'><text id='smallcase-staging.publisherOffersMeta.endDate' x='67' y='407'>endDate</text><title>endDate
+* date
+expiry date of the code</title></a>
+<text x='272' y='408' text-anchor='end' style='fill:#8FA68B'>date</text>  <use id='nn' x='50' y='413' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_active'><text id='smallcase-staging.publisherOffersMeta.active' x='67' y='423'>active</text><title>active
+* boolean</title></a>
+<text x='272' y='424' text-anchor='end' style='fill:#8FA68B'>Boolean</text>  <use id='nn' x='50' y='429' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_scidOffer'><text id='smallcase-staging.publisherOffersMeta.scidOffer' x='67' y='439'>scidOffer</text><title>scidOffer
+* boolean
+true if its SCID based offer</title></a>
+<text x='272' y='440' text-anchor='end' style='fill:#8FA68B'>Boolean</text>  <use id='nn' x='50' y='445' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_userOffer'><text id='smallcase-staging.publisherOffersMeta.userOffer' x='67' y='455'>userOffer</text><title>userOffer
+* boolean
+true if this offer is for specific user</title></a>
+<text x='272' y='456' text-anchor='end' style='fill:#8FA68B'>Boolean</text>  <use id='nn' x='50' y='461' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_createdAt'><text id='smallcase-staging.publisherOffersMeta.createdAt' x='67' y='471'>createdAt</text><title>createdAt
+* date</title></a>
+<text x='272' y='472' text-anchor='end' style='fill:#8FA68B'>date</text>  <use id='nn' x='50' y='477' xlink:href='#nn'/><a xlink:href='#smallcase-staging.publisherOffersMeta_updatedAt'><text id='smallcase-staging.publisherOffersMeta.updatedAt' x='67' y='487'>updatedAt</text><title>updatedAt
+* date</title></a>
+<text x='272' y='488' text-anchor='end' style='fill:#8FA68B'>date</text>  <a xlink:href='#smallcase-staging.publisherOffersMeta___v'><text id='smallcase-staging.publisherOffersMeta.__v' x='67' y='503'>__v</text><title>__v
+int</title></a>
+<text x='272' y='504' text-anchor='end' style='fill:#8FA68B'>int</text>  <a xlink:href='#smallcase-staging.publisherOffersMeta_global'><text id='smallcase-staging.publisherOffersMeta.global' x='67' y='519'>global</text><title>global
+boolean</title></a>
+<text x='272' y='520' text-anchor='end' style='fill:#8FA68B'>Boolean</text>  <a xlink:href='#smallcase-staging.publisherOffersMeta_migrated'><text id='smallcase-staging.publisherOffersMeta.migrated' x='67' y='535'>migrated</text><title>migrated
+boolean</title></a>
+<text x='272' y='536' text-anchor='end' style='fill:#8FA68B'>Boolean</text>
+<!-- == Table 'stats' == -->
+<rect id='depict_stats' class='entity' style='stroke:none;' x='1008' y='1896' width='176' height='96' rx='4' ry='4' />
+<path d='M 1008 1924 L 1008 1900 Q 1008 1896 1012 1896 L 1180 1896 Q 1184 1896 1184 1900 L 1184 1924 L1008 1924 ' style='fill:url(#tbg_F4DDBE);stroke-width:0;' />
+<rect class='entity' x='1008' y='1896' width='176' height='96' rx='4' ry='4' style='fill:none;stroke:#C4BBB0'/>
+<a xlink:href='#stats'><text x='1077' y='1915' >stats</text><title>Sub-document stats</title></a>
+  <use id='nn' x='1010' y='1933' xlink:href='#nn'/><a xlink:href='#stats_userCount'><text id='stats.userCount' x='1027' y='1943'>userCount</text><title>userCount
+* int</title></a>
+<text x='1168' y='1944' text-anchor='end' style='fill:#A69A8B'>int</text>  <a xlink:href='#stats_subscribedCount'><text id='stats.subscribedCount' x='1027' y='1959'>subscribedCount</text><title>subscribedCount
+int</title></a>
+<text x='1168' y='1960' text-anchor='end' style='fill:#A69A8B'>int</text>  <a xlink:href='#stats_investedUserCount'><text id='stats.investedUserCount' x='1027' y='1975'>investedUserCount</text><title>investedUserCount
+int</title></a>
+<text x='1168' y='1976' text-anchor='end' style='fill:#A69A8B'>int</text>
+<!-- == Table 'status' == -->
+<rect id='depict_status' class='entity' style='stroke:none;' x='304' y='456' width='176' height='128' rx='4' ry='4' />
+<path d='M 304 484 L 304 460 Q 304 456 308 456 L 476 456 Q 480 456 480 460 L 480 484 L304 484 ' style='fill:url(#tbg_C7F4BE);stroke-width:0;' />
+<rect class='entity' x='304' y='456' width='176' height='128' rx='4' ry='4' style='fill:none;stroke:#B3C4B0'/>
+<a xlink:href='#status'><text x='369' y='475' >status</text><title>Sub-document status</title></a>
+  <use id='nn' x='306' y='493' xlink:href='#nn'/><a xlink:href='#status_totalOfferDocs'><text id='status.totalOfferDocs' x='323' y='503'>totalOfferDocs</text><title>totalOfferDocs
+* int
+total offer created in progress</title></a>
+<text x='464' y='504' text-anchor='end' style='fill:#8FA68B'>int</text>  <use id='nn' x='306' y='509' xlink:href='#nn'/><a xlink:href='#status_createdOfferDocs'><text id='status.createdOfferDocs' x='323' y='519'>createdOfferDocs</text><title>createdOfferDocs
+* int
+total offer created success.</title></a>
+<text x='464' y='520' text-anchor='end' style='fill:#8FA68B'>int</text>  <use id='nn' x='306' y='525' xlink:href='#nn'/><a xlink:href='#status_failedOfferDocs'><text id='status.failedOfferDocs' x='323' y='535'>failedOfferDocs</text><title>failedOfferDocs
+* int
+total offer failed in creation.</title></a>
+<text x='464' y='536' text-anchor='end' style='fill:#8FA68B'>int</text>  <use id='nn' x='306' y='541' xlink:href='#nn'/><a xlink:href='#status_value'><text id='status.value' x='323' y='551'>value</text><title>value
+* string</title></a>
+<text x='464' y='552' text-anchor='end' style='fill:#8FA68B'>string</text>  <a xlink:href='#status_errorFile'><text id='status.errorFile' x='323' y='567'>errorFile</text><title>errorFile
+string
+error file in s3 for the failed documents</title></a>
+<text x='464' y='568' text-anchor='end' style='fill:#8FA68B'>string</text>
+<!-- == Table 'subscription' == -->
+<rect id='depict_subscription' class='entity' style='stroke:none;' x='896' y='696' width='144' height='96' rx='4' ry='4' />
+<path d='M 896 724 L 896 700 Q 896 696 900 696 L 1036 696 Q 1040 696 1040 700 L 1040 724 L896 724 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='896' y='696' width='144' height='96' rx='4' ry='4' style='fill:none;stroke:#B0B7C4'/>
+<a xlink:href='#subscription'><text x='926' y='715' >subscription</text><title>Sub-document subscription
+no of times it can be used at the time of renewal</title></a>
+  <use id='nn' x='898' y='733' xlink:href='#nn'/><a xlink:href='#subscription_limit'><text id='subscription.limit' x='915' y='743'>limit</text><title>limit
+* int</title></a>
+<text x='1024' y='744' text-anchor='end' style='fill:#8B95A6'>int</text>  <a xlink:href='#subscription_availedOn'><text id='subscription.availedOn' x='915' y='759'>availedOn</text><title>availedOn
+date</title></a>
+<text x='1024' y='760' text-anchor='end' style='fill:#8B95A6'>date</text>  <a xlink:href='#subscription_cycle'><text id='subscription.cycle' x='915' y='775'>cycle</text><title>cycle
+int</title></a>
+<text x='1024' y='776' text-anchor='end' style='fill:#8B95A6'>int</text>
+<!-- == Table 'subscription' == -->
+<rect id='depict_subscription' class='entity' style='stroke:none;' x='992' y='280' width='96' height='64' rx='4' ry='4' />
+<path d='M 992 308 L 992 284 Q 992 280 996 280 L 1084 280 Q 1088 280 1088 284 L 1088 308 L992 308 ' style='fill:url(#tbg_D1BEF4);stroke-width:0;' />
+<rect class='entity' x='992' y='280' width='96' height='64' rx='4' ry='4' style='fill:none;stroke:#B7B0C4'/>
+<a xlink:href='#subscription'><text x='998' y='299' >subscription</text><title>Sub-document subscription
+no of times this offer code can be used in the renewal cycle.</title></a>
+  <use id='nn' x='994' y='317' xlink:href='#nn'/><a xlink:href='#subscription_limit'><text id='subscription.limit' x='1011' y='327'>limit</text><title>limit
+* int</title></a>
+<text x='1072' y='328' text-anchor='end' style='fill:#948BA6'>int</text>
+<!-- == Table 'subscription' == -->
+<rect id='depict_subscription' class='entity' style='stroke:none;' x='304' y='184' width='96' height='64' rx='4' ry='4' />
+<path d='M 304 212 L 304 188 Q 304 184 308 184 L 396 184 Q 400 184 400 188 L 400 212 L304 212 ' style='fill:url(#tbg_C7F4BE);stroke-width:0;' />
+<rect class='entity' x='304' y='184' width='96' height='64' rx='4' ry='4' style='fill:none;stroke:#B3C4B0'/>
+<a xlink:href='#subscription'><text x='310' y='203' >subscription</text><title>Sub-document subscription
+used in the renewal time and count no of times</title></a>
+  <use id='nn' x='306' y='221' xlink:href='#nn'/><a xlink:href='#subscription_limit'><text id='subscription.limit' x='323' y='231'>limit</text><title>limit
+* int</title></a>
+<text x='384' y='232' text-anchor='end' style='fill:#8FA68B'>int</text>
+<!-- == Table 'stats' == -->
+<rect id='depict_stats' class='entity' style='stroke:none;' x='304' y='264' width='192' height='176' rx='4' ry='4' />
+<path d='M 304 292 L 304 268 Q 304 264 308 264 L 492 264 Q 496 264 496 268 L 496 292 L304 292 ' style='fill:url(#tbg_C7F4BE);stroke-width:0;' />
+<rect class='entity' x='304' y='264' width='192' height='176' rx='4' ry='4' style='fill:none;stroke:#B3C4B0'/>
+<a xlink:href='#stats'><text x='381' y='283' >stats</text><title>Sub-document stats
+gives stats like how many user have availed and eligible, revenue, available email/offers</title></a>
+  <use id='nn' x='306' y='301' xlink:href='#nn'/><a xlink:href='#stats_totalEligibleEmails'><text id='stats.totalEligibleEmails' x='323' y='311'>totalEligibleEmails</text><title>totalEligibleEmails
+* int</title></a>
+<text x='480' y='312' text-anchor='end' style='fill:#8FA68B'>int</text>  <use id='nn' x='306' y='317' xlink:href='#nn'/><a xlink:href='#stats_totalEligibleOffers'><text id='stats.totalEligibleOffers' x='323' y='327'>totalEligibleOffers</text><title>totalEligibleOffers
+* int</title></a>
+<text x='480' y='328' text-anchor='end' style='fill:#8FA68B'>int</text>  <use id='nn' x='306' y='333' xlink:href='#nn'/><a xlink:href='#stats_totalAvailedOffers'><text id='stats.totalAvailedOffers' x='323' y='343'>totalAvailedOffers</text><title>totalAvailedOffers
+* int</title></a>
+<text x='480' y='344' text-anchor='end' style='fill:#8FA68B'>int</text>  <use id='nn' x='306' y='349' xlink:href='#nn'/><a xlink:href='#stats_totalAvailedEmails'><text id='stats.totalAvailedEmails' x='323' y='359'>totalAvailedEmails</text><title>totalAvailedEmails
+* int</title></a>
+<text x='480' y='360' text-anchor='end' style='fill:#8FA68B'>int</text>  <a xlink:href='#stats_scidEligibleEmails'><text id='stats.scidEligibleEmails' x='323' y='375'>scidEligibleEmails</text><title>scidEligibleEmails
+object</title></a>
+<text x='480' y='376' text-anchor='end' style='fill:#8FA68B'>object</text>  <a xlink:href='#stats_scidAvailedEmails'><text id='stats.scidAvailedEmails' x='323' y='391'>scidAvailedEmails</text><title>scidAvailedEmails
+object</title></a>
+<text x='480' y='392' text-anchor='end' style='fill:#8FA68B'>object</text>  <use id='nn' x='306' y='397' xlink:href='#nn'/><a xlink:href='#stats_offerRevenue'><text id='stats.offerRevenue' x='323' y='407'>offerRevenue</text><title>offerRevenue
+* int</title></a>
+<text x='480' y='408' text-anchor='end' style='fill:#8FA68B'>int</text>  <a xlink:href='#stats_subsWithoutOffer'><text id='stats.subsWithoutOffer' x='323' y='423'>subsWithoutOffer</text><title>subsWithoutOffer
+int</title></a>
+<text x='480' y='424' text-anchor='end' style='fill:#8FA68B'>int</text>
+<!-- == Callout == -->
+<rect class='callout' x='48' y='64' width='224' height='36' rx='16' ry='16'  />
+<text x='72' y='64' class='callout'>
+    <tspan x='52' dx='8' dy='20'>This is a offer collection layout</tspan>
+</text>
+</g></svg>
