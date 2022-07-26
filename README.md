@@ -10,8 +10,8 @@
 4. [smallcase-staging.publisherOffers](#smallcase-staging.publisherOffers)
 5. [smallcase-staging.publisherOffersMeta](#smallcase-staging.publisherOffersMeta) 
 
-<a name='smallcase-staging.privateSmallcaseUserOffers'>### Collection privateSmallcaseUserOffers</a>
-
+### Collection privateSmallcaseUserOffers
+<a name='smallcase-staging.privateSmallcaseUserOffers'>#</a>
 This collection used for the private offers which created across the smallcases specific to any users collection&#46;<br><br>&#40;this collection gets no of document based on offer meta&#44; if its based for one scid and available for 3 plans so total 3 documents will be created along with the email attached to each offer&#41;<br>ex&#58;<br>one scid have 2 plans eligible for 3 email so no of documents will be 3&#42;2 &#61; 6<br><br>Also it will take data from publisherOffers at the time when any user availed the public offer so that time the document will be created wrt to the user trying to avail the offer&#46;
 
 | Idx | Field Name | Data Type | Description |
@@ -50,8 +50,8 @@ This collection used for the private offers which created across the smallcases 
 | 🔍  | email&#95;1&#95;publisher&#95;1&#95;code&#95;1&#95;scid&#95;1&#95;duration&#95;1 || ON email&#44; publisher&#44; code&#44; scid&#44; duration |  |
 
 
-<a name='smallcase-staging.publisherCampaign'>### Collection publisherCampaign </a>
-
+### Collection publisherCampaign
+<a name='smallcase-staging.publisherCampaign'>#</a>
 | Idx | Field Name | Data Type |
 |---|---|---|
 | *🔑 ⬋ | <a name='smallcase-staging.publisherCampaign__id'>&#95;id</a>| objectId  |
@@ -70,6 +70,7 @@ This collection used for the private offers which created across the smallcases 
 
 
 ### Collection publisherCampaignUsers 
+
 | Idx | Field Name | Data Type |
 |---|---|---|
 | *🔑 | <a name='smallcase-staging.publisherCampaignUsers__id'>&#95;id</a>| objectId  |
@@ -87,8 +88,8 @@ This collection used for the private offers which created across the smallcases 
 | Vir | Relationship | ( campaignId ) ref [smallcase&#45;staging&#46;publisherCampaign](#publisherCampaign) (&#95;id) |
 
 
-<a name='smallcase-staging.publisherOffers'>### Collection publisherOffers</a>
-
+### Collection publisherOffers
+<a name='smallcase-staging.publisherOffers'>#</a>
 This collection used for the public offers which created across the smallcases not specific to any users&#46;<br><br>&#40;this collection gets no of document based on offer meta&#44; if its based for one scid and available for 3 plans so total 3 documents will be created&#41;
 
 | Idx | Field Name | Data Type | Description |
@@ -123,8 +124,8 @@ This collection used for the public offers which created across the smallcases n
 | Vir | Relationship | ( groupId ) ref [smallcase&#45;staging&#46;publisherOffersMeta](#publisherOffersMeta) (&#95;id) |  |
 
 
-<a name='smallcase-staging.publisherOffersMeta'>### Collection publisherOffersMeta </a>
-
+### Collection publisherOffersMeta
+<a name='smallcase-staging.publisherOffersMeta'>#</a>
 This collection used for the offer level info&#44; this is first collection gives info for the offer created in the database&#46;
 
 | Idx | Field Name | Data Type | Description |
