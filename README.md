@@ -10,7 +10,7 @@
 4. [smallcase-staging.publisherOffers](#smallcase-staging.publisherOffers)
 5. [smallcase-staging.publisherOffersMeta](#smallcase-staging.publisherOffersMeta) 
 
-### Collection privateSmallcaseUserOffers 
+<a name='smallcase-staging.privateSmallcaseUserOffers'>### Collection privateSmallcaseUserOffers</a>
 This collection used for the private offers which created across the smallcases specific to any users collection&#46;<br><br>&#40;this collection gets no of document based on offer meta&#44; if its based for one scid and available for 3 plans so total 3 documents will be created along with the email attached to each offer&#41;<br>ex&#58;<br>one scid have 2 plans eligible for 3 email so no of documents will be 3&#42;2 &#61; 6<br><br>Also it will take data from publisherOffers at the time when any user availed the public offer so that time the document will be created wrt to the user trying to avail the offer&#46;
 
 | Idx | Field Name | Data Type | Description |
