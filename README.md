@@ -1,37 +1,258 @@
-## Welcome to GitHub Pages
+<a name='layout1'># Offer DB Layout #
+![img](./MainLayout.svg)
 
-You can use the [editor on GitHub](https://github.com/sagar-jain-sc/pb-offer-db-documentation/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+##Tables
 
-### Markdown
+1. [smallcase-staging.privateSmallcaseUserOffers](#smallcase-staging.privateSmallcaseUserOffers) 
+2. [smallcase-staging.publisherCampaign](#smallcase-staging.publisherCampaign) 
+3. [smallcase-staging.publisherCampaignUsers](#smallcase-staging.publisherCampaignUsers) 
+4. [smallcase-staging.publisherOffers](#smallcase-staging.publisherOffers)
+5. [smallcase-staging.publisherOffersMeta](#smallcase-staging.publisherOffersMeta) 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Collection privateSmallcaseUserOffers 
+This collection used for the private offers which created across the smallcases specific to any users collection&#46;<br><br>&#40;this collection gets no of document based on offer meta&#44; if its based for one scid and available for 3 plans so total 3 documents will be created along with the email attached to each offer&#41;<br>ex&#58;<br>one scid have 2 plans eligible for 3 email so no of documents will be 3&#42;2 &#61; 6<br><br>Also it will take data from publisherOffers at the time when any user availed the public offer so that time the document will be created wrt to the user trying to avail the offer&#46;
 
-```markdown
-Syntax highlighted code block
+| Idx | Field Name | Data Type | Description |
+|---|---|---|---|
+| *🔑 | <a name='smallcase-staging.privateSmallcaseUserOffers__id'>&#95;id</a>| objectId  |  |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers_subscription'>subscription</a>| object  | no of times it can be used at the time of renewal |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers_subscription.limit'>subscription&#46;limit</a>| int  |  |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_subscription.availedOn'>subscription&#46;availedOn</a>| date  |  |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_subscription.cycle'>subscription&#46;cycle</a>| int  |  |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers_availCount'>availCount</a>| int  |  |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_offerAvailedCount'>offerAvailedCount</a>| int  | current stats of offer availed |
+| *🔍 | <a name='smallcase-staging.privateSmallcaseUserOffers_email'>email</a>| string  | email for which offer is enabled |
+| *🔍 | <a name='smallcase-staging.privateSmallcaseUserOffers_publisher'>publisher</a>| string  | manager&#47;publisher offer curator&#46; |
+| *🔍 | <a name='smallcase-staging.privateSmallcaseUserOffers_code'>code</a>| string  |  |
+| *🔍 | <a name='smallcase-staging.privateSmallcaseUserOffers_scid'>scid</a>| string  |  |
+| *🔍 | <a name='smallcase-staging.privateSmallcaseUserOffers_duration'>duration</a>| string  | duration for which this offer is linked to user |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers_discount'>discount</a>| object  | type and number of discount |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers_discount.type'>discount&#46;type</a>| string  |  |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers_discount.value'>discount&#46;value</a>| int  |  |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers_startDate'>startDate</a>| date  |  |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers_endDate'>endDate</a>| date  |  |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_scidOffer'>scidOffer</a>| Boolean  | if this is scid offer |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers_history'>history</a>| array&#91;object&#93;  |  |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_createdAt'>createdAt</a>| date  |  |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_updatedAt'>updatedAt</a>| date  |  |
+| *| <a name='smallcase-staging.privateSmallcaseUserOffers___v'>&#95;&#95;v</a>| int  |  |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_userId'>userId</a>| objectId  | user Id for which this user is offer available |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_userPlanId'>userPlanId</a>| objectId  |  |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_active'>active</a>| Boolean  | if this is active |
+|  | <a name='smallcase-staging.privateSmallcaseUserOffers_status'>status</a>| string  | status of the current offer if its expired&#47;availed |
+| 🔍 | <a name='smallcase-staging.privateSmallcaseUserOffers_offerId'>offerId</a>| objectId  | group Id from meta collection to map it with the current Offer |
+| Indexes |
+| 🔑 | &#95;id&#95; || ON &#95;id |  |
+| 🔍  | offerId&#95;1 || ON offerId |  |
+| 🔍  | email&#95;1 || ON email |  |
+| 🔍  | email&#95;1&#95;publisher&#95;1&#95;code&#95;1&#95;scid&#95;1&#95;duration&#95;1 || ON email&#44; publisher&#44; code&#44; scid&#44; duration |  |
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+### Collection publisherCampaign 
+| Idx | Field Name | Data Type |
+|---|---|---|
+| *🔑 ⬋ | <a name='smallcase-staging.publisherCampaign__id'>&#95;id</a>| objectId  |
+| *| <a name='smallcase-staging.publisherCampaign_stats'>stats</a>| object  |
+| *| <a name='smallcase-staging.publisherCampaign_stats.userCount'>stats&#46;userCount</a>| int  |
+|  | <a name='smallcase-staging.publisherCampaign_stats.subscribedCount'>stats&#46;subscribedCount</a>| int  |
+|  | <a name='smallcase-staging.publisherCampaign_stats.investedUserCount'>stats&#46;investedUserCount</a>| int  |
+| *🔍 | <a name='smallcase-staging.publisherCampaign_publisher'>publisher</a>| string  |
+| *| <a name='smallcase-staging.publisherCampaign_scid'>scid</a>| string  |
+| *| <a name='smallcase-staging.publisherCampaign_date'>date</a>| date  |
+| *| <a name='smallcase-staging.publisherCampaign___v'>&#95;&#95;v</a>| int  |
+|  | <a name='smallcase-staging.publisherCampaign_smallcaseName'>smallcaseName</a>| string  |
+| Indexes |
+| 🔑 | &#95;id&#95; || ON &#95;id|
+| 🔍  | publisher&#95;1 || ON publisher|
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+### Collection publisherCampaignUsers 
+| Idx | Field Name | Data Type |
+|---|---|---|
+| *🔑 | <a name='smallcase-staging.publisherCampaignUsers__id'>&#95;id</a>| objectId  |
+| *| <a name='smallcase-staging.publisherCampaignUsers_publisher'>publisher</a>| string  |
+| *🔍 | <a name='smallcase-staging.publisherCampaignUsers_email'>email</a>| string  |
+|  | <a name='smallcase-staging.publisherCampaignUsers_phoneNumber'>phoneNumber</a>| string  |
+| *⬈ | <a name='smallcase-staging.publisherCampaignUsers_campaignId'>campaignId</a>| objectId  |
+| *| <a name='smallcase-staging.publisherCampaignUsers_scid'>scid</a>| string  |
+| *| <a name='smallcase-staging.publisherCampaignUsers___v'>&#95;&#95;v</a>| int  |
+|  | <a name='smallcase-staging.publisherCampaignUsers_name'>name</a>| string  |
+| Indexes |
+| 🔑 | &#95;id&#95; || ON &#95;id|
+| 🔍  | email&#95;1 || ON email|
+| Relationships |
+| Vir | Relationship | ( campaignId ) ref [smallcase&#45;staging&#46;publisherCampaign](#publisherCampaign) (&#95;id) |
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### Collection publisherOffers 
+This collection used for the public offers which created across the smallcases not specific to any users&#46;<br><br>&#40;this collection gets no of document based on offer meta&#44; if its based for one scid and available for 3 plans so total 3 documents will be created&#41;
 
-### Jekyll Themes
+| Idx | Field Name | Data Type | Description |
+|---|---|---|---|
+| *🔑 | <a name='smallcase-staging.publisherOffers__id'>&#95;id</a>| objectId  |  |
+| *🔍 | <a name='smallcase-staging.publisherOffers_publisher'>publisher</a>| string  | publisher name |
+|  | <a name='smallcase-staging.publisherOffers_planId'>planId</a>| string  | planId of the specific plan for this offer is created&#46; |
+|  | <a name='smallcase-staging.publisherOffers_version'>version</a>| int  |  |
+| *🔍 | <a name='smallcase-staging.publisherOffers_duration'>duration</a>| string  |  |
+| *🔍 | <a name='smallcase-staging.publisherOffers_code'>code</a>| string  |  |
+| 🔍 | <a name='smallcase-staging.publisherOffers_scid'>scid</a>| string  | id of the smallcase&#46; |
+| *| <a name='smallcase-staging.publisherOffers_discount'>discount</a>| object  | discount info like type of discount and number |
+| *| <a name='smallcase-staging.publisherOffers_discount.type'>discount&#46;type</a>| string  |  |
+| *| <a name='smallcase-staging.publisherOffers_discount.value'>discount&#46;value</a>| int  |  |
+| *| <a name='smallcase-staging.publisherOffers_subscription'>subscription</a>| object  | no of times this offer code can be used in the renewal cycle&#46; |
+| *| <a name='smallcase-staging.publisherOffers_subscription.limit'>subscription&#46;limit</a>| int  |  |
+| *| <a name='smallcase-staging.publisherOffers_availCount'>availCount</a>| int  | no of times it can be availed in the fresh subscription&#46; |
+| *| <a name='smallcase-staging.publisherOffers_startDate'>startDate</a>| date  |  |
+| *| <a name='smallcase-staging.publisherOffers_endDate'>endDate</a>| date  |  |
+| *| <a name='smallcase-staging.publisherOffers_active'>active</a>| Boolean  | if the offer is active or not&#46; |
+| *| <a name='smallcase-staging.publisherOffers___v'>&#95;&#95;v</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffers_global'>global</a>| Boolean  |  |
+|  | <a name='smallcase-staging.publisherOffers_createdAt'>createdAt</a>| date  |  |
+|  | <a name='smallcase-staging.publisherOffers_updatedAt'>updatedAt</a>| date  |  |
+|  | <a name='smallcase-staging.publisherOffers_scidOffer'>scidOffer</a>| Boolean  | if this is scid based offer |
+| ⬈ | <a name='smallcase-staging.publisherOffers_groupId'>groupId</a>| objectId  | id from the offerMeta collection to identify the offer |
+|  | <a name='smallcase-staging.publisherOffers_history'>history</a>| array&#91;object&#93;  |  |
+| Indexes |
+| 🔑 | &#95;id&#95; || ON &#95;id |  |
+| 🔍  | publisher&#95;1&#95;code&#95;1&#95;scid&#95;1&#95;duration&#95;1 || ON publisher&#44; code&#44; scid&#44; duration |  |
+| Relationships |
+| Vir | Relationship | ( groupId ) ref [smallcase&#45;staging&#46;publisherOffersMeta](#publisherOffersMeta) (&#95;id) |  |
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sagar-jain-sc/pb-offer-db-documentation/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
+### Collection publisherOffersMeta 
+This collection used for the offer level info&#44; this is first collection gives info for the offer created in the database&#46;
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+| Idx | Field Name | Data Type | Description |
+|---|---|---|---|
+| *🔑 ⬋ | <a name='smallcase-staging.publisherOffersMeta__id'>&#95;id</a>| objectId  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_subscription'>subscription</a>| object  | used in the renewal time and count no of times |
+| *| <a name='smallcase-staging.publisherOffersMeta_subscription.limit'>subscription&#46;limit</a>| int  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_stats'>stats</a>| object  | gives stats like how many user have availed and eligible&#44; revenue&#44; available email&#47;offers |
+| *| <a name='smallcase-staging.publisherOffersMeta_stats.totalEligibleEmails'>stats&#46;totalEligibleEmails</a>| int  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_stats.totalEligibleOffers'>stats&#46;totalEligibleOffers</a>| int  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_stats.totalAvailedOffers'>stats&#46;totalAvailedOffers</a>| int  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_stats.totalAvailedEmails'>stats&#46;totalAvailedEmails</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails'>stats&#46;scidEligibleEmails</a>| object  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIET_0002'>stats&#46;scidEligibleEmails&#46;WKIET&#95;0002</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.undefined'>stats&#46;scidEligibleEmails&#46;undefined</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0007'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0007</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0004'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0004</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0005'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0005</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIET_0008'>stats&#46;scidEligibleEmails&#46;WKIET&#95;0008</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0009'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0009</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0011'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0011</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0010'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0010</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKINM_0001'>stats&#46;scidEligibleEmails&#46;WKINM&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKINM_0003'>stats&#46;scidEligibleEmails&#46;WKINM&#95;0003</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKINM_0007'>stats&#46;scidEligibleEmails&#46;WKINM&#95;0007</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKITR_0001'>stats&#46;scidEligibleEmails&#46;WKITR&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKINM_0004'>stats&#46;scidEligibleEmails&#46;WKINM&#95;0004</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKITR_0015'>stats&#46;scidEligibleEmails&#46;WKITR&#95;0015</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKITR_0017'>stats&#46;scidEligibleEmails&#46;WKITR&#95;0017</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKITR_0018'>stats&#46;scidEligibleEmails&#46;WKITR&#95;0018</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKITR_0016'>stats&#46;scidEligibleEmails&#46;WKITR&#95;0016</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKITR_0026'>stats&#46;scidEligibleEmails&#46;WKITR&#95;0026</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0008'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0008</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.ALL'>stats&#46;scidEligibleEmails&#46;ALL</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0003'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0003</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0013'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0013</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0001'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0012'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0012</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTET_0001'>stats&#46;scidEligibleEmails&#46;WRTET&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0011'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0011</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTTR_0002'>stats&#46;scidEligibleEmails&#46;WRTTR&#95;0002</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0005'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0005</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTTR_0001'>stats&#46;scidEligibleEmails&#46;WRTTR&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0004'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0004</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTNM_0001'>stats&#46;scidEligibleEmails&#46;WRTNM&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0014'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0014</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.PBDMO_0011'>stats&#46;scidEligibleEmails&#46;PBDMO&#95;0011</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.PBDMO_0002'>stats&#46;scidEligibleEmails&#46;PBDMO&#95;0002</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKINM_0008'>stats&#46;scidEligibleEmails&#46;WKINM&#95;0008</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0033'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0033</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0035'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0035</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0036'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0036</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WKIMO_0037'>stats&#46;scidEligibleEmails&#46;WKIMO&#95;0037</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0015'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0015</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0016'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0016</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidEligibleEmails.WRTMO_0017'>stats&#46;scidEligibleEmails&#46;WRTMO&#95;0017</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails'>stats&#46;scidAvailedEmails</a>| object  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIET_0002'>stats&#46;scidAvailedEmails&#46;WKIET&#95;0002</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.undefined'>stats&#46;scidAvailedEmails&#46;undefined</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIET_0008'>stats&#46;scidAvailedEmails&#46;WKIET&#95;0008</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0004'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0004</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0007'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0007</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0009'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0009</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0005'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0005</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0011'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0011</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0010'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0010</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKINM_0001'>stats&#46;scidAvailedEmails&#46;WKINM&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKINM_0003'>stats&#46;scidAvailedEmails&#46;WKINM&#95;0003</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKINM_0007'>stats&#46;scidAvailedEmails&#46;WKINM&#95;0007</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKINM_0004'>stats&#46;scidAvailedEmails&#46;WKINM&#95;0004</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKITR_0001'>stats&#46;scidAvailedEmails&#46;WKITR&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKITR_0015'>stats&#46;scidAvailedEmails&#46;WKITR&#95;0015</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKITR_0017'>stats&#46;scidAvailedEmails&#46;WKITR&#95;0017</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKITR_0016'>stats&#46;scidAvailedEmails&#46;WKITR&#95;0016</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKITR_0026'>stats&#46;scidAvailedEmails&#46;WKITR&#95;0026</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKITR_0018'>stats&#46;scidAvailedEmails&#46;WKITR&#95;0018</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0008'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0008</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.ALL'>stats&#46;scidAvailedEmails&#46;ALL</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0001'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0012'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0012</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTET_0001'>stats&#46;scidAvailedEmails&#46;WRTET&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0005'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0005</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTTR_0001'>stats&#46;scidAvailedEmails&#46;WRTTR&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0004'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0004</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTNM_0001'>stats&#46;scidAvailedEmails&#46;WRTNM&#95;0001</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0003'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0003</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0013'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0013</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0011'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0011</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTTR_0002'>stats&#46;scidAvailedEmails&#46;WRTTR&#95;0002</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0014'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0014</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.PBDMO_0002'>stats&#46;scidAvailedEmails&#46;PBDMO&#95;0002</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.PBDMO_0011'>stats&#46;scidAvailedEmails&#46;PBDMO&#95;0011</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0033'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0033</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKINM_0008'>stats&#46;scidAvailedEmails&#46;WKINM&#95;0008</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0035'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0035</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0037'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0037</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WKIMO_0036'>stats&#46;scidAvailedEmails&#46;WKIMO&#95;0036</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0016'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0016</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0017'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0017</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.scidAvailedEmails.WRTMO_0015'>stats&#46;scidAvailedEmails&#46;WRTMO&#95;0015</a>| int  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_stats.offerRevenue'>stats&#46;offerRevenue</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_stats.subsWithoutOffer'>stats&#46;subsWithoutOffer</a>| int  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_status'>status</a>| object  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_status.totalOfferDocs'>status&#46;totalOfferDocs</a>| int  | total offer created in progress |
+| *| <a name='smallcase-staging.publisherOffersMeta_status.createdOfferDocs'>status&#46;createdOfferDocs</a>| int  | total offer created success&#46; |
+| *| <a name='smallcase-staging.publisherOffersMeta_status.failedOfferDocs'>status&#46;failedOfferDocs</a>| int  | total offer failed in creation&#46; |
+| *| <a name='smallcase-staging.publisherOffersMeta_status.value'>status&#46;value</a>| string  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_status.errorFile'>status&#46;errorFile</a>| string  | error file in s3 for the failed documents |
+| *| <a name='smallcase-staging.publisherOffersMeta_availCount'>availCount</a>| int  | No of times user can avail the offer in the subscribe state &#40;no renewal&#41; |
+| *| <a name='smallcase-staging.publisherOffersMeta_eligibleUserEmails'>eligibleUserEmails</a>| array&#91;object&#93;  |  |
+| *🔍 | <a name='smallcase-staging.publisherOffersMeta_publisher'>publisher</a>| string  |  |
+| *🔍 | <a name='smallcase-staging.publisherOffersMeta_code'>code</a>| string  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_planData'>planData</a>| array&#91;object&#93;  | Gives data like SCID&#44; available plans eligible for the discount&#46; |
+| *| <a name='smallcase-staging.publisherOffersMeta_planData.name'>planData&#46;name</a>| string  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_planData.durations'>planData&#46;durations</a>| array  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_planData.scid'>planData&#46;scid</a>| string  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_discount'>discount</a>| object  | discount type with number |
+| *| <a name='smallcase-staging.publisherOffersMeta_discount.type'>discount&#46;type</a>| string  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_discount.value'>discount&#46;value</a>| int  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_startDate'>startDate</a>| date  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_endDate'>endDate</a>| date  | expiry date of the code |
+| *| <a name='smallcase-staging.publisherOffersMeta_active'>active</a>| Boolean  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_scidOffer'>scidOffer</a>| Boolean  | true if its SCID based offer |
+| *| <a name='smallcase-staging.publisherOffersMeta_userOffer'>userOffer</a>| Boolean  | true if this offer is for specific user |
+| *| <a name='smallcase-staging.publisherOffersMeta_createdAt'>createdAt</a>| date  |  |
+| *| <a name='smallcase-staging.publisherOffersMeta_updatedAt'>updatedAt</a>| date  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta___v'>&#95;&#95;v</a>| int  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_global'>global</a>| Boolean  |  |
+|  | <a name='smallcase-staging.publisherOffersMeta_migrated'>migrated</a>| Boolean  |  |
+| Indexes |
+| 🔑 | &#95;id&#95; || ON &#95;id |  |
+| 🔍  | publisher&#95;1&#95;code&#95;1 || ON publisher&#44; code |  |
+
+
+
